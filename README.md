@@ -1,0 +1,1 @@
+A Typescript App that check if a point is inside the give Polygon
