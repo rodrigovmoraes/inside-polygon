@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script type="module" src="./dist/bundle.js" defer></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"> 
+  </head>
+<body>
+    <div class="container">
+        <div class="row" id="outsideMsg" style="display: none">
+            <div class="col-sm">
+                <div class="alert alert-danger" role="alert" style="width: 800; margin-top: 30px;">
+                    The point is outside!
+                </div>
+            </div>   
+        </div>
+        <div class="row" id="insideMsg"  style="display: none">
+            <div class="col-sm">
+                <div class="alert alert-success" role="alert" style="width: 800; margin-top: 30px;">
+                    The point is inside!
+                </div>
+            </div>   
+        </div>
+        <div class="row">
+          <div class="col-sm" style="margin-top: 20px;">
+              <canvas id="polygonCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm" style="margin-top: 10px;"> 
+                <button type="button" class="btn btn-primary" id="btnBuildPolygon">Gerar Polígono</button>
+                <button type="button" class="btn btn-primary" id="btnResetPolygon">Resetar</button>
+            </div>
+        </div>  
+    </div>
+</body>
+</html>
