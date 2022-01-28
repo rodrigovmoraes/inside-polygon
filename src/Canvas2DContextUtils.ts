@@ -24,14 +24,6 @@ export class Canvas2DContextUtils {
         
     }
 
-    public drawLineSegment(lineSegment: LineSegment) {
-        if (this.canvasContext != null) {
-            this.canvasContext.moveTo(lineSegment.pointA.x, lineSegment.pointA.y);
-            this.canvasContext.lineTo(lineSegment.pointB.x, lineSegment.pointB.y);
-            this.canvasContext.stroke();
-        }
-    }
-
     public drawPoint(a: Point, radius: number) {
         if (this.canvasContext != null) {
             this.canvasContext.beginPath();

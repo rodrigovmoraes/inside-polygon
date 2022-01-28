@@ -15,16 +15,16 @@ export class Polygon {
             let lastVertex:Point = firstVertex = this.vertices[0];
             for (let i = 0; i < this.vertices.length; i++) {
                 let vertex = this.vertices[i];
-                this.lineSegments.push(new LineSegment(lastVertex, vertex));
+                this.lineSegments.push(new LineSegment(lastVertex, vertex, canvas));
                 lastVertex = vertex;
             }
-            this.lineSegments.push(new LineSegment(lastVertex, firstVertex));
+            this.lineSegments.push(new LineSegment(lastVertex, firstVertex, canvas));
         }
     }
 
     draw() {
         for (let lineSegment of this.lineSegments) {
-            this.canvas2DContextUtils.drawLineSegment(lineSegment);
+            lineSegment.draw();
         }
     }
 
