@@ -5,45 +5,41 @@ import { LineSegment } from './LineSegment';
 export class Polygon {
     private vertices: Point[];
     private canvas2DContextUtils: Canvas2DContextUtils;
+    private lineSegments: LineSegment[] = [];
 
     constructor(canvas : HTMLCanvasElement, vertices: Point[]) {
         this.canvas2DContextUtils = new Canvas2DContextUtils(canvas);
         this.vertices = vertices;
-    }
-
-    draw() {
         if (this.vertices.length >= 3) {
             let firstVertex;
             let lastVertex:Point = firstVertex = this.vertices[0];
-            for (let i = 1; i < this.vertices.length; i++) {
+            for (let i = 0; i < this.vertices.length; i++) {
                 let vertex = this.vertices[i];
-                this.canvas2DContextUtils.drawLine(lastVertex, vertex);                
+                this.lineSegments.push(new LineSegment(lastVertex, vertex));
                 lastVertex = vertex;
             }
-            this.canvas2DContextUtils.drawLine(lastVertex, firstVertex);
+            this.lineSegments.push(new LineSegment(lastVertex, firstVertex));
+        }
+    }
+
+    draw() {
+        for (let lineSegment of this.lineSegments) {
+            this.canvas2DContextUtils.drawLineSegment(lineSegment);
         }
     }
 
     isPointInside(point : Point) : boolean {
-        if (this.vertices.length >= 3) {
+        if (this.lineSegments.length >= 3) {
             let cont = 0;
-            let firstVertex;
-            let lastVertex:Point = firstVertex = this.vertices[0];
-            for (let i = 1; i < this.vertices.length; i++) {
-                let vertex = this.vertices[i];
-                const lineSegment: LineSegment = new LineSegment(lastVertex, vertex);
+            for (let lineSegment of this.lineSegments) {
                 if (lineSegment.pointIsAbove(point)) {
                     cont++;
                 }
-                lastVertex = vertex;
             }
-            const lineSegment: LineSegment = new LineSegment(lastVertex, firstVertex);
-            if (lineSegment.pointIsAbove(point)) {
-                cont++;
-            }
-            return cont % 2 > 0
+            return cont % 2 > 0;
         } else {
             return false;
         }
+        
     }
 }

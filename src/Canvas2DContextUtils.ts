@@ -1,3 +1,4 @@
+import { LineSegment } from './LineSegment';
 import { Point } from './Point'
 
 export class Canvas2DContextUtils {
@@ -21,6 +22,14 @@ export class Canvas2DContextUtils {
             this.canvasContext.stroke();
         }
         
+    }
+
+    public drawLineSegment(lineSegment: LineSegment) {
+        if (this.canvasContext != null) {
+            this.canvasContext.moveTo(lineSegment.pointA.x, lineSegment.pointA.y);
+            this.canvasContext.lineTo(lineSegment.pointB.x, lineSegment.pointB.y);
+            this.canvasContext.stroke();
+        }
     }
 
     public drawPoint(a: Point, radius: number) {
